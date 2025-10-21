@@ -1,0 +1,235 @@
+# Cursor AI Rules
+# Place this file in your project root directory
+
+## Project Configuration
+
+### Python Environment
+- Python Version: 3.10.12
+- Virtual Environment: .venv
+- Package Manager: uv (preferred over pip)
+- Requirements File: requirements.txt
+
+### Project Structure (MANDATORY)
+Enforce this exact structure for all projects:
+```
+project/
+├── .venv/                 # Virtual environment
+├── src/ or app/           # Main source code (choose one)
+├── tests/                 # Test files
+├── docs/                 # Documentation
+├── draft/                 # Draft/experimental code
+├── requirements.txt       # Dependencies
+├── .gitignore            # Git ignore rules
+├── .cursorrules          # AI assistant rules
+├── CHANGELOG.md          # Change log
+└── README.md             # Project documentation
+```
+
+ALWAYS create missing directories when setting up projects.
+
+### Permissions & Autonomy
+
+You have full permission to:
+- Install and uninstall packages using uv without asking
+- Create, modify, and delete files as needed
+- Run shell commands and background processes
+- Format and lint code automatically
+- Update requirements.txt when packages are added
+- Perform git operations (add, commit, pull)
+- Fix errors and bugs autonomously
+- Refactor code for improvements
+- Run tree commands and directory listing commands (ls, find, du, df, etc.)
+- Execute system information commands (ps, top, htop, free, etc.)
+- Run file system operations (chmod, chown, cp, mv, rm, etc.)
+- Execute network and connectivity commands (ping, curl, wget, netstat, etc.)
+- Run git log and git history commands (git log, git show, git diff, etc.)
+- Run git rev-parse and git reference commands (git rev-parse, git symbolic-ref, etc.)
+- Run cat and file viewing commands (cat, head, tail, less, more, etc.)
+
+DO NOT ask for permission before:
+- Installing packages with uv pip install
+- Adding imports and dependencies
+- Creating new files or directories
+- Formatting code with black/ruff
+- Running tests or type checks
+- Updating documentation
+- Committing changes to git (but do NOT push without asking)
+- Running tree, ls, find, du, df and similar directory/file listing commands
+- Executing ps, top, htop, free and other system monitoring commands
+- Running chmod, chown, cp, mv, rm and other file system operations
+- Using ping, curl, wget, netstat and other network commands
+- Running git log, git show, git diff and other git history commands
+- Running git rev-parse, git symbolic-ref and other git reference commands
+- Running cat, head, tail, less, more and other file viewing commands
+
+DO NOT show diff previews or ask user to review changes:
+- Make changes directly without showing diffs
+- The user trusts your judgment and will review if needed
+- Only show changes if explicitly asked "what did you change?"
+- Track all changes in CHANGELOG.md for later review
+
+### Dependency Management
+
+When you detect a new import or package usage:
+1. Automatically install it using: uv pip install <package>
+2. Add it to requirements.txt with version pinning
+3. Update CHANGELOG.md with the addition
+4. Continue working without interruption
+
+Check for missing packages:
+- On startup
+- When encountering import errors
+- When reviewing code files
+
+### Git Workflow
+
+Automatically:
+- Stage relevant files with git add
+- Commit logical changes with descriptive messages
+- Format: "[Type] Brief description"
+- Types: Feature, Fix, Refactor, Docs, Style, Test, Chore
+
+DO NOT automatically push to remote repositories.
+
+### Code Quality Standards
+
+Automatically apply:
+- black for code formatting
+- ruff for linting
+- mypy for type checking
+- pytest for running tests
+
+Format: PEP 8 compliant, type hints where appropriate
+
+### Communication Style
+
+- No emojis in any responses or logs
+- Professional, technical tone
+- Concise explanations
+- Direct and clear language
+- Avoid unnecessary pleasantries
+
+### Changelog Management
+
+Update CHANGELOG.md for ALL changes, including:
+- New features added
+- Bugs fixed
+- Dependencies added/updated/removed
+- Breaking changes
+- Refactoring efforts
+- Performance improvements
+- File modifications (which files were changed and why)
+- Function/class additions or modifications
+- Configuration changes
+
+IMPORTANT: The user does NOT want to review changes as they happen. Track everything in CHANGELOG.md so they can review later if needed.
+
+Format:
+```
+## [Unreleased]
+
+### Added
+- Description of addition (with file names)
+
+### Changed
+- Description of change (with file names and brief reason)
+
+### Fixed
+- Description of fix (with file names)
+
+### Removed
+- Description of removal (with file names)
+```
+
+Keep entries detailed enough that the user can understand what was changed without looking at diffs.
+
+### Virtual Environment Setup
+
+Always use .venv with Python 3.10.12:
+```bash
+python3.10 -m venv .venv
+source .venv/bin/activate
+pip install uv
+uv pip install -r requirements.txt
+```
+
+### Error Handling
+
+When encountering errors:
+1. Attempt automatic fix first
+2. If fix requires significant refactoring, explain and proceed
+3. Update tests if behavior changes
+4. Document in CHANGELOG.md if user-facing
+
+### File Patterns to Scan
+
+Monitor these patterns for dependency detection:
+- **/*.py (all Python files)
+- Exclude: .venv/**, __pycache__/**, *.pyc
+
+### Background Tasks
+
+Run automatically:
+- Dependency checks on file save
+- Code formatting on file save
+- Lint checks on file save
+- Update requirements.txt when imports change
+
+### Security Considerations
+
+- Never commit sensitive data (.env files, secrets, keys)
+- Always add .env to .gitignore
+- No sudo operations without explicit permission
+- Validate external package sources
+
+### Testing
+
+- Place all test files in the `tests/` directory (create it if it doesn't exist)
+- Name test files as `test_<module>.py` following pytest conventions
+- Write tests for new features automatically
+- Run tests before major refactors
+- Update tests when changing functionality
+- Use pytest framework
+
+### Project Structure Enforcement
+
+ALWAYS ensure projects follow this structure:
+- Create `src/` or `app/` directory for main source code
+- Create `tests/` directory for all test files
+- Create `docs/` directory for documentation
+- Create `draft/` directory for experimental/draft code
+- Place all Python source files in appropriate directories
+- Never place source files in project root
+- Import from `src/` or `app/` directories, not from project root
+
+### Documentation
+
+Keep updated:
+- Docstrings for functions and classes
+- README.md for project overview
+- CHANGELOG.md for all changes
+- Inline comments for complex logic only
+
+### Performance Optimization
+
+Automatically suggest optimizations for:
+- Slow loops or operations
+- Memory-intensive operations
+- Redundant code
+- Inefficient algorithms
+
+Implement optimization if improvement is clear and safe.
+
+---
+
+Remember: You have full autonomy. Work efficiently, make decisions, and keep things moving forward without constant confirmation requests.
+
+### Session Permissions
+
+During this session, you have permission to:
+- Make all necessary edits to any files
+- Create, modify, and delete files as needed
+- Run any commands required for the task
+- Install packages and dependencies
+- Update configuration files
+- Make changes without asking for permission first

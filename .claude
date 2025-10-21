@@ -1,0 +1,148 @@
+# Claude Code Configuration File
+# Place this file in your project root directory
+
+# Project Information
+project:
+  name: "Python Development Project"
+  description: "Auto-managed Python project with uv and git integration"
+
+# Python Environment Configuration
+environment:
+  type: "python"
+  python_version: "3.10.12"
+  venv_path: ".venv"
+  package_manager: "uv"
+
+# Permissions - Grant Claude Code full autonomy
+permissions:
+  # Package Management
+  install_packages: true
+  uninstall_packages: true
+  update_packages: true
+  auto_add_to_requirements: true
+  
+  # File System
+  read_files: true
+  write_files: true
+  create_files: true
+  delete_files: true
+  
+  # Git Operations
+  git_add: false  # Manual control over staging
+  git_commit: false  # Manual control over commits
+  git_push: false  # Set to true if you want auto-push
+  git_pull: true
+  git_branch: true
+  git_merge: false  # Set to true for auto-merging
+  
+  # Background Processes
+  background_tasks: true
+  auto_format: true
+  auto_lint: true
+  auto_test: false  # Set to true for automatic testing
+  
+  # Terminal/Shell
+  run_shell_commands: true
+  sudo_access: false  # Keep false for security
+  
+  # Directory and System Commands
+  tree_commands: true
+  directory_listing: true
+  system_monitoring: true
+  file_system_operations: true
+  network_commands: true
+  git_history_commands: true
+  git_reference_commands: true
+  file_viewing_commands: true
+
+# Automatic Dependency Management
+dependencies:
+  requirements_file: "requirements.txt"
+  auto_detect: true
+  auto_install: true
+  auto_update_requirements: true
+  use_uv: true
+  
+  # Background checks
+  check_on_startup: true
+  check_interval: "on_file_change"  # Options: on_file_change, never, hourly
+  
+  # Package detection patterns
+  scan_patterns:
+    - "**/*.py"
+  
+  ignore_patterns:
+    - ".venv/**"
+    - "venv/**"
+    - "__pycache__/**"
+    - "*.pyc"
+
+# Git Configuration
+git:
+  auto_commit_on_checkpoint: false
+  commit_message_prefix: "[Claude Code]"
+  auto_stage_new_files: false  # Manual control over staging
+  ignore_patterns:
+    - ".venv/"
+    - "*.pyc"
+    - "__pycache__/"
+    - "*.egg-info/"
+    - ".pytest_cache/"
+
+# Code Quality Tools (auto-run in background)
+quality:
+  formatter: "black"
+  linter: "ruff"
+  type_checker: "mypy"
+  auto_format_on_save: true
+  auto_lint_on_save: true
+
+# Startup Commands
+startup:
+  commands:
+    - "source .venv/bin/activate || python3.10 -m venv .venv && source .venv/bin/activate"
+    - "pip install --upgrade pip uv"
+    - "uv pip install -r requirements.txt || echo 'No requirements.txt found'"
+
+# Claude Behavior Settings
+behavior:
+  verbose: false  # Set to true for detailed operation logs
+  ask_before_major_changes: false  # false = full autonomy
+  auto_fix_errors: true
+  suggest_improvements: true
+  
+  # No permission required for these operations
+  no_permission_required:
+    - "Installing packages with uv pip install"
+    - "Adding imports and dependencies"
+    - "Creating new files or directories"
+    - "Formatting code with black/ruff"
+    - "Running tests or type checks"
+    - "Updating documentation"
+    - "Committing changes to git (but do NOT push without asking)"
+    - "Running tree, ls, find, du, df and similar directory/file listing commands"
+    - "Executing ps, top, htop, free and other system monitoring commands"
+    - "Running chmod, chown, cp, mv, rm and other file system operations"
+    - "Using ping, curl, wget, netstat and other network commands"
+    - "Running git log, git show, git diff and other git history commands"
+    - "Running git rev-parse, git symbolic-ref and other git reference commands"
+    - "Running cat, head, tail, less, more and other file viewing commands"
+
+# Security Settings
+security:
+  max_file_size: "10MB"
+  allowed_network_access: true
+  sandbox_mode: false
+
+# Session Permissions
+session:
+  allow_all_edits: true
+  create_files: true
+  modify_files: true
+  delete_files: true
+  run_commands: true
+  install_packages: true
+  update_configs: true
+  no_permission_required: true
+
+  
