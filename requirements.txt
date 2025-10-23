@@ -78,9 +78,10 @@ gitpython
 h5py
 joblib
 
-# Agents - LangChain and LangGraph 
+# Agents - LangChain and LangGraph
 langchain
 langgraph
+langchain-openai
 
 # Letta client
 letta-client

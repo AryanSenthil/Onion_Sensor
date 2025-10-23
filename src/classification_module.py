@@ -445,8 +445,8 @@ def create_export_model(model_name: str) -> None:
 
 def _update_models_registry(model_name: str) -> None:
     model_dir = Path('models') / model_name
-    registry_path = Path('models') / 'models.json'
-    Path('models').mkdir(exist_ok=True)
+    project_root = Path(__file__).resolve().parent.parent
+    registry_path = project_root / 'models.json'
     
     if registry_path.exists():
         try:

@@ -134,6 +134,7 @@ outputs/
 tmp/
 temp/
 *.bak
+raw_data/
 
 
 # Retain placeholder files
