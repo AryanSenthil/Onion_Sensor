@@ -135,13 +135,6 @@ tmp/
 temp/
 *.bak
 
-# Local developer tooling/config files
-.claude
-.codex
-.cursorrules
-
-# Local setup scripts
-setup_*.sh
 
 # Retain placeholder files
 !.gitkeep
