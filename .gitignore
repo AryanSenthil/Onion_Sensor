@@ -134,7 +134,7 @@ outputs/
 tmp/
 temp/
 *.bak
-raw_data/
+data/
 
 
 # Retain placeholder files
