@@ -104,7 +104,8 @@ def load_and_preprocess_data(model_name: str, validation_split: float = 0.2, see
     """
     start_time = time.time()
     set_seed(seed)
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     metadata_dir = model_dir / 'metadata'
     
     with open(metadata_dir / 'preprocessing_info.json', 'r') as f:
@@ -189,7 +190,8 @@ def build_and_compile_model(model_name: str, learning_rate: float = 0.001) -> No
     Requires: [dataset_info.json]
     """
     start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     metadata_dir = model_dir / 'metadata'
     untrained_model_dir = model_dir / 'models' / 'untrained'
     untrained_model_dir.mkdir(parents=True, exist_ok=True)
@@ -245,7 +247,8 @@ def train_and_evaluate_model(model_name: str, epochs: int = 10, patience: int = 
     Requires: [datasets/, models/untrained/model.keras]
     """
     overall_start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     dataset_dir = model_dir / 'datasets'
     models_dir = model_dir / 'models'
     training_dir = model_dir / 'training'
@@ -397,7 +400,8 @@ def create_export_model(model_name: str) -> None:
     Requires: [models/trained/model.keras, label_names.npy]
     """
     start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     trained_model_path = model_dir / 'models' / 'trained' / 'model.keras'
     metadata_dir = model_dir / 'metadata'
     export_dir = model_dir / 'export' / 'saved_model'
@@ -444,7 +448,8 @@ def create_export_model(model_name: str) -> None:
 
 
 def _update_models_registry(model_name: str) -> None:
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     project_root = Path(__file__).resolve().parent.parent
     registry_path = project_root / 'models.json'
     
