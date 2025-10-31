@@ -162,7 +162,8 @@ def build_and_compile_model(
     Requires: [dataset_info.json]
     """
     start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     metadata_dir = model_dir / 'metadata'
     untrained_model_dir = model_dir / 'models' / 'untrained'
     untrained_model_dir.mkdir(parents=True, exist_ok=True)
@@ -202,6 +203,8 @@ def build_and_compile_model(
     
     model_path = untrained_model_dir / 'model.keras'
     model.save(model_path)
+
+    model.summary()
     
     summary_lines = []
     model.summary(print_fn=lambda x: summary_lines.append(x))
@@ -249,7 +252,8 @@ def train_and_evaluate_model(
     Requires: [datasets/*.npz, models/untrained/model.keras]
     """
     overall_start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     datasets_dir = model_dir / 'datasets'
     models_dir = model_dir / 'models'
     training_dir = model_dir / 'training'
@@ -347,7 +351,7 @@ def train_and_evaluate_model(
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     loss_epoch_path = plots_dir / 'loss_vs_epoch.png'
     plt.savefig(loss_epoch_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     plt.figure(figsize=(10, 6))
     plt.plot(history.epoch, train_rmse, 'b-', label='Training', linewidth=2)
@@ -356,7 +360,7 @@ def train_and_evaluate_model(
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     rmse_epoch_path = plots_dir / 'rmse_vs_epoch.png'
     plt.savefig(rmse_epoch_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     plt.figure(figsize=(10, 6))
     plt.plot(times_in_minutes, history.history['loss'], 'b-', label='Training', linewidth=2)
@@ -365,9 +369,9 @@ def train_and_evaluate_model(
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     loss_time_path = plots_dir / 'loss_vs_time.png'
     plt.savefig(loss_time_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(10, 6))
     plt.scatter(y_test, y_pred_test, alpha=0.5, s=50)
     min_val = min(y_test.min(), y_pred_test.min())
     max_val = max(y_test.max(), y_pred_test.max())
@@ -438,7 +442,8 @@ def create_export_model(model_name: str) -> None:
     Requires: [models/trained/model.keras, dataset_info.json]
     """
     start_time = time.time()
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     trained_model_path = model_dir / 'models' / 'trained' / 'model.keras'
     export_dir = model_dir / 'export' / 'saved_model'
     metadata_dir = model_dir / 'metadata'
@@ -475,7 +480,8 @@ def create_export_model(model_name: str) -> None:
 
 
 def _update_models_registry(model_name: str) -> None:
-    model_dir = Path('models') / model_name
+    project_root = Path(__file__).resolve().parent.parent
+    model_dir = project_root / 'models' / model_name
     project_root = Path(__file__).resolve().parent.parent
     registry_path = project_root / 'models.json'
     
@@ -535,3 +541,5 @@ def _update_models_registry(model_name: str) -> None:
         json.dump(registry, f, indent=2)
     
     logger.info(f"OK Registry updated: {registry_path.absolute()}")
+
+

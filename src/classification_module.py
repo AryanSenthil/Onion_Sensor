@@ -174,6 +174,12 @@ def load_and_preprocess_data(model_name: str, validation_split: float = 0.2, see
         json.dump(metadata, f, indent=2)
     
     logger.info(f"✓ Dataset metadata: {dataset_info_path.absolute()}")
+    logger.info(
+        f"✓ Dataset details:\n"
+        f" - Input shape: {list(input_shape)}\n"
+        f" - Number of labels: {len(label_names)}\n"
+        f" - Label names: {label_names.tolist()}"
+    )
     logger.info(f"✓ Data preprocessing complete: {time.time() - start_time:.1f}s")
 
 
@@ -223,6 +229,8 @@ def build_and_compile_model(model_name: str, learning_rate: float = 0.001) -> No
         loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         metrics=['accuracy']
     )
+
+    model.summary()
     
     model_path = untrained_model_dir / 'model.keras'
     model.save(model_path)
@@ -326,7 +334,7 @@ def train_and_evaluate_model(model_name: str, epochs: int = 10, patience: int = 
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     loss_epoch_path = plots_dir / 'loss_vs_epoch.png'
     plt.savefig(loss_epoch_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     plt.figure(figsize=(10, 6))
     plt.plot(history.epoch, 100 * np.array(history.history['accuracy']), 'b-', label='Training', linewidth=2)
@@ -335,7 +343,7 @@ def train_and_evaluate_model(model_name: str, epochs: int = 10, patience: int = 
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     accuracy_epoch_path = plots_dir / 'accuracy_vs_epoch.png'
     plt.savefig(accuracy_epoch_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     times_in_minutes = [t / 60 for t in time_callback.times]
     plt.figure(figsize=(10, 6))
@@ -345,7 +353,7 @@ def train_and_evaluate_model(model_name: str, epochs: int = 10, patience: int = 
     plt.legend(); plt.grid(True, alpha=0.3); plt.tight_layout()
     loss_time_path = plots_dir / 'loss_vs_time.png'
     plt.savefig(loss_time_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     plt.figure(figsize=(10, 8))
     sns.heatmap(confusion_mtx, xticklabels=label_names, yticklabels=label_names,
@@ -354,7 +362,7 @@ def train_and_evaluate_model(model_name: str, epochs: int = 10, patience: int = 
     plt.tight_layout()
     confusion_matrix_path = plots_dir / 'confusion_matrix.png'
     plt.savefig(confusion_matrix_path, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
     
     plots_metadata = {
         'plots_directory_absolute': str(plots_dir.absolute()),
