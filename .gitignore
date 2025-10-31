@@ -135,6 +135,7 @@ tmp/
 temp/
 *.bak
 data/
+test_data/
 
 
 # Retain placeholder files

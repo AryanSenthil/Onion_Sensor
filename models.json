@@ -19,7 +19,7 @@
       "num_classes": 2,
       "performance": {
         "test_accuracy": 1.0,
-        "test_loss": 0.0031904373317956924
+        "test_loss": 0.01638469286262989
       }
     },
     "regression_model": {
@@ -42,8 +42,8 @@
       },
       "total_samples": 1128,
       "performance": {
-        "test_loss_mse": 0.0013787309871986508,
-        "test_rmse": 0.03713126697540296
+        "test_loss_mse": 0.001827942323870957,
+        "test_rmse": 0.04275444215366348
       },
       "architecture": {
         "type": "Wide & Deep",
