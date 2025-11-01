@@ -542,4 +542,99 @@ def _update_models_registry(model_name: str) -> None:
     
     logger.info(f"OK Registry updated: {registry_path.absolute()}")
 
+"""
+│
+└── models/                               # Base models directory
+    │
+    └── {MODEL_NAME}/                     # Individual model directory (e.g., "deformation_regressor_v1")
+        │
+        ├── data/
+        │   └── raw/                      # Backup of original CSV files
+        │       ├── file1.csv
+        │       ├── file2.csv
+        │       └── ...
+        │
+        ├── datasets/                     # NumPy arrays (not TensorFlow datasets)
+        │   ├── train.npz                 # Training data
+        │   │                             # Contains: X_wide, X_deep, y
+        │   ├── val.npz                   # Validation data
+        │   │                             # Contains: X_wide, X_deep, y
+        │   └── test.npz                  # Test data
+        │                                 # Contains: X_wide, X_deep, y
+        │
+        ├── metadata/                     # Metadata and configuration files
+        │   └── dataset_info.json         # Dataset structure metadata
+        │                                 # {features: {wide_feature, deep_feature, target},
+        │                                 #  feature_stats, train/val/test samples,
+        │                                 #  splits, seed, etc.}
+        │
+        ├── models/
+        │   ├── untrained/                # Initial compiled model
+        │   │   ├── model.keras           # Keras model file (Wide & Deep architecture)
+        │   │   ├── model_summary.txt     # Human-readable architecture
+        │   │   │                         # (Input layers, normalization, hidden layers, etc.)
+        │   │   └── model_architecture.json  # Structured layer information
+        │   │                             # {model_type: 'wide_and_deep_regression',
+        │   │                             #  hidden_layers: [64, 64, 32, 16],
+        │   │                             #  inputs: {wide, deep}, output, etc.}
+        │   └── trained/                  # Trained model weights
+        │       └── model.keras           # Keras model with trained weights
+        │
+        ├── training/                     # Training results and metrics
+        │   ├── history.json              # Complete training history
+        │   │                             # {loss, val_loss, root_mean_squared_error,
+        │   │                             #  val_root_mean_squared_error per epoch,
+        │   │                             #  epoch_times_seconds, cumulative_times_seconds}
+        │   │
+        │   ├── test_results.json         # Test set performance
+        │   │                             # {test_loss_mse, test_rmse,
+        │   │                             #  predictions: [...], actuals: [...],
+        │   │                             #  residuals: [...]}
+        │   │
+        │   ├── training_summary.json     # Key metrics summary
+        │   │                             # {total_epochs, training_time,
+        │   │                             #  final_train_loss, final_val_loss,
+        │   │                             #  final_train_rmse, final_val_rmse,
+        │   │                             #  test_loss_mse, test_rmse,
+        │   │                             #  residuals_mean, residuals_std}
+        │   │
+        │   ├── plots_metadata.json       # Structured plot information
+        │   │                             # {plots_directory, total_plots: 5,
+        │   │                             #  plots: {loss_vs_epoch, rmse_vs_epoch,
+        │   │                             #          loss_vs_time, predictions_vs_actual,
+        │   │                             #          residuals_analysis}}
+        │   │
+        │   └── plots/                    # Training visualizations (PNG images)
+        │       ├── loss_vs_epoch.png     # MSE loss curves over epochs
+        │       │                         # (Training vs Validation)
+        │       │
+        │       ├── rmse_vs_epoch.png     # RMSE curves over epochs
+        │       │                         # (Training vs Validation)
+        │       │
+        │       ├── loss_vs_time.png      # Loss curves over real training time (minutes)
+        │       │                         # (Training vs Validation)
+        │       │
+        │       ├── predictions_vs_actual.png  # Scatter plot with diagonal line
+        │       │                         # Shows how well predictions match actuals
+        │       │                         # Perfect prediction = points on red diagonal line
+        │       │
+        │       └── residuals_analysis.png     # Combined plot (2 subplots)
+        │                                 # Left: Histogram of residuals distribution
+        │                                 # Right: Residuals vs predicted values
+        │
+        └── export/                       # Production-ready model
+            ├── export_metadata.json      # Export configuration
+            │                             # {model_type: 'wide_and_deep_regression',
+            │                             #  inputs: {wide_input, deep_input},
+            │                             #  output: {shape, dtype, target},
+            │                             #  usage: {python_example}}
+            │
+            └── saved_model/              # TensorFlow SavedModel format
+                ├── saved_model.pb        # Model graph definition
+                ├── variables/            # Model weights
+                │   ├── variables.data-00000-of-00001
+                │   └── variables.index
+                ├── assets/               # Additional assets (if any)
+                └── fingerprint.pb        # Model fingerprint
 
+"""
