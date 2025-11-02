@@ -94,8 +94,8 @@ Thumbs.db
 .#*
 
 # AI coding assistants
-.claude/
-.codex/
+.claude
+.codex
 .cursorrules
 
 # Shell scripts
