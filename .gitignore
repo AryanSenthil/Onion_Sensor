@@ -93,6 +93,14 @@ Thumbs.db
 *~
 .#*
 
+# AI coding assistants
+.claude/
+.codex/
+.cursorrules
+
+# Shell scripts
+*.sh
+
 # OS metadata
 ehthumbs.db
 Desktop.ini
