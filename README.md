@@ -424,13 +424,6 @@ print(f"Load Type: {load_type}")
 | **Accuracy** | 100% | 100% | 100% |
 | **Loss** | 0.0021 | 0.0018 | - |
 
-**Confusion Matrix:**
-```
-              Predicted
-              Point  Uniform
-Actual Point    72      0
-      Uniform    0     72
-```
 
 ### Regression Performance
 
@@ -576,7 +569,7 @@ For licensing inquiries, please contact:
 **Dr. Mrinal Saha**
 School of Aerospace and Mechanical Engineering
 University of Oklahoma
-Email: [Contact via department]
+Email: msaha@ou.edu
 
 ---
 
