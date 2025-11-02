@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/AryanSenthil/Onion_Sensor)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0+-orange?logo=tensorflow)](https://www.tensorflow.org/)
-[![License](https://img.shields.io/badge/License-Research-red)](#disclaimer)
+[![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
 ---
 
@@ -30,7 +30,7 @@
 - [Directory Structure](#directory-structure)
 - [Design Philosophy](#design-philosophy)
 - [Contributing](#contributing)
-- [Disclaimer](#disclaimer)
+- [License](#license)
 - [Citation](#citation)
 - [Contact](#contact)
 
@@ -558,17 +558,39 @@ This is a research project under active development. Contributions are welcome f
 
 ---
 
-## Disclaimer
+## License
 
-**This research work and all associated materials are the property of the University of Oklahoma and were conducted under the supervision of Dr. Mrinal Saha. All rights reserved.**
+**This project is licensed under a Proprietary Research License.**
 
-This work is part of ongoing research and may not be reproduced, distributed, or used for commercial purposes without prior written permission from the University of Oklahoma.
+Copyright (c) 2024-2025 University of Oklahoma. All Rights Reserved.
 
-For licensing inquiries, please contact:
+This research work and all associated materials are the property of the University of Oklahoma and were conducted under the supervision of Dr. Mrinal Saha at the School of Aerospace and Mechanical Engineering.
+
+### Key Restrictions
+
+- **No reproduction** without prior written permission
+- **No distribution** to third parties
+- **No commercial use** or commercial advantage
+- **No modification** or derivative works
+- Academic use and citation permitted with proper attribution
+
+### Permitted Use
+
+This software is made available for:
+- Academic review and educational purposes
+- Collaboration with authorized research partners
+- Citation and reference in academic publications
+
+For full license terms, see the [LICENSE](LICENSE) file.
+
+### Licensing Inquiries
+
+For permissions, collaboration requests, or licensing inquiries, please contact:
 
 **Dr. Mrinal Saha**
 School of Aerospace and Mechanical Engineering
 University of Oklahoma
+Norman, OK 73019
 Email: msaha@ou.edu
 
 ---
