@@ -65,6 +65,7 @@ coverage.xml
 
 # Jupyter Notebook
 .ipynb_checkpoints/
+.jupyter/
 *.nbconvert.ipynb
 
 # Logs / diagnostics
@@ -125,17 +126,23 @@ celerybeat-schedule
 celerybeat.pid
 
 # Project-specific
-models/
+models/*
+!models/.gitkeep
 draft/
 drafts/
 *.draft
-artifacts/
-outputs/
+artifacts/*
+!artifacts/.gitkeep
+outputs/*
+!outputs/.gitkeep
 tmp/
 temp/
 *.bak
-data/
-test_data/
+data/*
+!data/.gitkeep
+test_data/*
+!test_data/.gitkeep
 test/
 
-.jupyter/
+# Keep .gitkeep files to track empty directories
+!.gitkeep
