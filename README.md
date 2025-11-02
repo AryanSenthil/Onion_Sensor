@@ -38,16 +38,11 @@
 
 ## Abstract
 
-This work presents the fabrication and characterization of a sustainable piezoelectric sensor utilizing agricultural waste in the form of onion peel as the active sensing material. The sensor was fabricated through direct ink writing (DIW) 3D printing, where dehydrated and ground onion peel powder was dispersed in a silicone matrix to create a functional composite ink. The self-aligned cellulose fibers in onion peel exhibit polarization under mechanical stress, enabling piezoelectric voltage generation.
+This work presents the development of a self-powered pressure sensor utilizing onion peel waste as the active piezoelectric material, combined with machine learning techniques to enable intelligent deformation sensing. Agricultural waste in the form of dehydrated and ground onion peel was dispersed in a silicone matrix and fabricated via direct ink writing (DIW) 3D printing, where the self-aligned cellulose fibers generate voltage under mechanical stress. The sensor was characterized under cyclic compression at multiple deformation levels and load types.
 
-The sensor was tested under cyclic compression loading at three deformation levels (0.5, 0.7, and 1.0 mm) under two distinct loading configurations: point load and uniform load.
+To interpret the sensor's electrical response and extract deformation information, we developed a **two-stage machine learning pipeline**. Convolutional neural networks (CNNs) operating on Short-Time Fourier Transform (STFT) spectrograms classify the loading configuration, while a Wide & Deep regression model predicts deformation magnitude by fusing the load type with voltage signal features. This ML-enabled approach allows the bio-composite sensor to predict both the type and magnitude of applied pressure without the requirement of an external battery source unlike traditional pressure sensors.
 
-To extract actionable insights from the sensor's electrical response, we developed a novel **two-stage machine learning architecture**:
-
-1. **Stage 1 (Classification)**: Convolutional Neural Networks (CNNs) on Short-Time Fourier Transform (STFT) spectrograms classify the type of applied load (point vs. uniform)
-2. **Stage 2 (Regression)**: Wide & Deep regression model combines the predicted load type with peak-to-peak voltage measurements to predict deformation magnitude
-
-This architecture effectively captures the complex electromechanical behavior of the bio-based sensor, leveraging both memorization of load-specific patterns and generalization across the continuous deformation space.
+The results demonstrate that combining sustainable materials with intelligent signal processing creates viable sensing platforms for applications in structural health monitoring, wearable electronics, and human-machine interfaces. By transforming agricultural waste into functional sensors augmented with machine learning, this work opens pathways for environmentally conscious sensor technologies with embedded intelligence.
 
 ---
 
